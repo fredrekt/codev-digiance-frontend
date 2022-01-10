@@ -10,10 +10,15 @@ const Store = ({children}) => {
         console.log('page mounted')
     }, [])
 
+    const logout = () => {
+        setIsLoggedIn(false);
+    }
+
     return (
         <Context.Provider value={{
-            isLoggedIn, setIsLoggedIn
-        }}>
+            isLoggedIn, setIsLoggedIn,
+            logout
+        }}>{children}
         </Context.Provider>
     )
 }
