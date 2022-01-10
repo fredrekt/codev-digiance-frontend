@@ -1,12 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-import Form from './components/Form';
+import {Routes as Switch, Route } from 'react-router-dom';
+import HomePage from './pages';
+import AccountPage from './pages/Account';
+import ProtectedRoute from './auth/protected-route';
 
 function App() {
   return (
-    <>
-    <Form/>
-    </>
+    <ProtectedRoute>
+      <Switch>
+        <Route exact path='/' element={<HomePage/>}/>
+        <Route exact path='/account' element={<AccountPage/>}/>
+      </Switch>
+    </ProtectedRoute>
   );
 }
 
