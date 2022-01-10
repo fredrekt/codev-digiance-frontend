@@ -1,6 +1,5 @@
 import './App.css';
 import {Routes as Switch, Route } from 'react-router-dom';
-import HomePage from './pages';
 import AccountPage from './pages/Account';
 import ProtectedRoute from './auth/protected-route';
 
