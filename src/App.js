@@ -8,8 +8,7 @@ function App() {
   return (
     <ProtectedRoute>
       <Switch>
-        <Route exact path='/' element={<HomePage/>}/>
-        <Route exact path='/account' element={<AccountPage/>}/>
+        <Route exact path='/' element={<AccountPage/>}/>
       </Switch>
     </ProtectedRoute>
   );
