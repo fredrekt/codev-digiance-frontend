@@ -1,38 +1,71 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Container from '../components/Container'
+import { useStore } from '../context';
+import { useNavigate } from 'react-router-dom';
 
-const ChangePassword = () => {
+const ChangePassword = ({history}) => {
     const [passwords, setPasswords] = useState({
         password: "",
         confirmpassword: ""
     });
     const [error, setError] = useState(false);
     const [confirmed, setConfirmed] = useState(false);
+    let navigate = useNavigate();
+
+    const { user } = useStore()
 
     const {
         password,
         confirmpassword
     } = passwords
 
+    const errorChangePassword = () => {
+        setError(true);
+        setTimeout(()=>{
+            setPasswords({
+                password: "",
+                confirmpassword: ""
+            })
+            setError(false);
+            setConfirmed(false);
+        }, 1500)
+    }
+
     const onChange = e => setPasswords({ ...passwords, [e.target.name]: e.target.value });
-    const onSubmit = e => {
-        e.preventDefault();
-        if(password === confirmpassword){
-            alert('Password Confirmed')
-            setConfirmed(true);
-        }
-        else{
-            alert(`Password doesn't match!`);
-            setError(true);
-            setTimeout(()=>{
-                setPasswords({
-                    password: "",
-                    confirmpassword: ""
-                })
-                setError(false);
-                setConfirmed(false);
-            }, 1500)
+    const onSubmit = async(e) => {
+        const { email } = user
+        try {
+            e.preventDefault();
+            if(password === confirmpassword){
+                setConfirmed(true);
+                const res = await axios.patch(`${process.env.REACT_APP_API}/users/change-password`, 
+                    {
+                        email,
+                        password
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }
+                )
+                if(res){
+                    alert('Password successfully changed!')
+                    navigate('/')
+                }
+                else{
+                    errorChangePassword();
+                }
+            }
+            else{
+                errorChangePassword();
+            }
+        } 
+        catch (error) {
+            console.log(error)
+            errorChangePassword();
         }
     }
 
