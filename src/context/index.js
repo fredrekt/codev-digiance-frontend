@@ -5,6 +5,7 @@ export const useStore = () => useContext(Context);
 
 const Store = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState({})
 
     useEffect(() => {
         console.log('page mounted')
@@ -17,6 +18,7 @@ const Store = ({children}) => {
     return (
         <Context.Provider value={{
             isLoggedIn, setIsLoggedIn,
+            user, setUser,
             logout
         }}>{children}
         </Context.Provider>
