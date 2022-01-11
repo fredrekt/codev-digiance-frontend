@@ -71,7 +71,7 @@ const Form = () => {
                 <form onSubmit={e=>onSubmit(e)} className="flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <input required name="email" value={email} onChange={e=>onChange(e)} type="email" className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email"/>
-                        <input required name="password" value={password} onChange={e=>onChange(e)} type="text" className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password"/>
+                        <input required name="password" value={password} onChange={e=>onChange(e)} type="password" className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password"/>
                         {error && <p className="text-red-500">Wrong password/email, please try again.</p>}
                     </div>
                     <div className="flex-column items-center justify-between">
