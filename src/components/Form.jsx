@@ -37,7 +37,7 @@ const Form = () => {
                         <input name="password" value={password} onChange={e=>onChange(e)} type="text" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password"/>
                     </div>
                     <div className="flex-column items-center justify-between">
-                        <button type="submit" className="py-2 px-4 bg-black hover:bg-gray-50 text-white hover:text-black w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md">
+                        <button type="submit" className="py-2 px-4 bg-black hover:bg-gray-100 text-white hover:text-black w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md">
                             Sign In
                         </button>
                     </div>
