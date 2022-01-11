@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Modal from './Modal'
 
 const Profile = ({user}) => {
     // Using static image for no space consumed in deployment
@@ -16,6 +17,7 @@ const Profile = ({user}) => {
                 <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
                     {user.email}
                 </p>
+                <Modal/>
                 <div className="flex items-center justify-between gap-4 w-full mt-8">
                     <Link to="/change-password" className="py-2 px-4 bg-black hover:bg-gray-100 text-white hover:text-black w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg ">
                         Change Password
