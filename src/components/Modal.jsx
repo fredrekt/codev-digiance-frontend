@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import Card from "./stripe/Card";
+import axios from "axios";
 
 export default function Modal() {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleSubmit = async () => {
+    if (!stripe || !elements) {
+      return;
+    }
+
+    const card = elements.getElement(CardElement);
+    const result = await stripe.createToken(card);
+
+    if (result.error) {
+      console.log(result.error.message);
+    } else {
+      stripeTokenHandler(result.token);
+    }
+  };
+
+  const stripeTokenHandler = async (token) => {
+    const paymentData = {token: token.id};
+    // alert(JSON.stringify(paymentData))
+    const res = await axios.post(`${process.env.REACT_APP_API}/stripe/charge`, 
+        {
+            stripeToken: paymentData.token
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+    );
+  
+    console.log(res.data)
+    return res.data
+  }
+
   return (
     <>
     <div className="flex just-">
@@ -9,7 +48,7 @@ export default function Modal() {
         type="button"
         className="cursor-pointer w-16"
         title="Setup stripe payment"
-        onClick={() => setShowModal(true)}
+        onClick={()=>setShowModal(true)}
         src="https://icon-library.com/images/stripe-icon/stripe-icon-23.jpg" alt="" />
     </div>
       {showModal ? (
@@ -36,13 +75,10 @@ export default function Modal() {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They're slowed down by their perception of
-                    themselves. If you're taught you can’t do anything, you
-                    won’t do anything. I was taught I could do everything.
-                  </p>
+                    <Card/>
+                    <p>
+                        
+                    </p>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -56,7 +92,7 @@ export default function Modal() {
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleSubmit}
                   >
                     Save Changes
                   </button>

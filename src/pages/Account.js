@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React from 'react'
 import Container from '../components/Container';
 import Profile from '../components/Profile';
 import { useStore } from '../context'
 
 const AccountPage = () => {
-    const [user, setUser] = useState({
-        email: "fred@gmail.com"
-    })
+    // const [user, setUser] = useState({
+    //     email: "fred@gmail.com"
+    // })
     const { 
-        logout
+        logout, user
     } = useStore();
 
     return (
