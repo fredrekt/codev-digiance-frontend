@@ -11,7 +11,7 @@ const Profile = ({user}) => {
         <div className="shadow-lg w-64 bg-white dark:bg-gray-800">
             <img alt="profil" src={bgImageUrl} className="rounded-t-lg h-28 w-full mb-4"/>
             <div className="flex flex-col items-center justify-center p-4 -mt-16">
-                <a href="#" className="block relative">
+                <a href="#fred" className="block relative">
                     <img alt="profil" src={imageUrl} className="mx-auto object-cover rounded-full h-16 w-16 "/>
                 </a>
                 <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
