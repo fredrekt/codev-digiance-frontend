@@ -76,8 +76,8 @@ export default function Modal() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                     <Card/>
-                    <p>
-                        
+                    <p className="mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultrices eros elit, ac commodo magna pretium ac. Curabitur pellentesque, tortor accumsan condimentum tincidunt, tellus augue tempor felis, ut pulvinar tortor elit sit amet ipsum.
                     </p>
                 </div>
                 {/*footer*/}
